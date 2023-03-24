@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="icon" href="./image/favicon.webp">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1> To Do List Web App</h1>
+    <div id="myDIV" class="heading">
+     
+        <input type="text" id="myInputtitle" placeholder="Title...">
+        <input type="text" id="myInputDetail" placeholder="Discriptions...">
+        <span id="_span"onclick="newElement()" class="addBtn">Add To List</span>
+    </div>
+
+    <ul id="myUL">
+        <li style="background-color: rgb(29, 27, 27); color: aqua;">
+            <pre>Title                        Discriptions</pre>
+        </li>
+
+    </ul>
+   
+    <script >
+        // Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function () {
+    var div = this.parentElement;
+    div.style.display = "none";
+  };
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector("ul");
+list.addEventListener(
+  "click",
+  function (ev) {
+    if (ev.target.tagName === "LI") {
+      ev.target.classList.toggle("checked");
+    }
+  },
+  false
+);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInputtitle").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+
+  var tx = document.createTextNode(
+    "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"
+  );
+  li.appendChild(tx);
+
+  var inputValuedetail = document.getElementById("myInputDetail").value;
+  var tx = document.createTextNode(inputValuedetail);
+  li.appendChild(tx);
+  if (inputValue === "" || inputValuedetail === "") {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInputtitle").value = "";
+  document.getElementById("myInputDetail").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function () {
+      var div = this.parentElement;
+      div.style.display = "none";
+    };
+  }
+}
+
+    </script>
+</body>
+
+</html>
